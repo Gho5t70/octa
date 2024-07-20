@@ -13,8 +13,8 @@ int main () {
         if (s2[i] == s2[i+1]){
         cout<<"Duplicate number:"<<s2[i]<<endl;
         count++;}
-//        if (isalpha(s2[i])) 
-//        break;
+        if (isalpha(s2[i])) 
+          break;
     }
     
     cout << "Total Duplicateed Number:" << count;
