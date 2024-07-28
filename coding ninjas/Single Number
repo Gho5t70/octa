@@ -1,0 +1,24 @@
+#include <vector>
+#include <map>
+using namespace std;
+int occursOnce(vector<int> &a, int n) {
+    int num = -1; 
+    map<int, int> mpp;
+    for (int i = 0; i < n; i++) {
+        mpp[a[i]]++;
+    }
+    for (auto itr = mpp.begin(); itr != mpp.end(); itr++) {
+        if (itr->second == 1) {
+            num = itr->first;
+            break;  
+        }
+    }
+    return num;
+}
+int main() {
+    vector<int> arr = {4, 5, 1, 2, 2, 1, 4, 3};
+    int n = arr.size();
+    int result = occursOnce(arr, n);
+    cout << "Element that occurs once: " << result << endl; 
+    return 0;
+}
