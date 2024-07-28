@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath> // For sqrt function
+using namespace std;
+
+class Solution {
+public:
+    int mySqrt(int x) {
+        if (x < 0) return -1; // Handle negative input gracefully
+        
+        return static_cast<int>(sqrt(x)); // Compute and cast the result to int
+    }
+};
+
+int main() {
+    Solution sol;
+
+    // Test cases
+    int x1 = 4;
+    int x2 = 8;
+    int x3 = 0;
+    int x4 = 1;
+
+    cout << "Square root of " << x1 << " is: " << sol.mySqrt(x1) << endl; // Output: 2
+    cout << "Square root of " << x2 << " is: " << sol.mySqrt(x2) << endl; // Output: 2
+    cout << "Square root of " << x3 << " is: " << sol.mySqrt(x3) << endl; // Output: 0
+    cout << "Square root of " << x4 << " is: " << sol.mySqrt(x4) << endl; // Output: 1
+
+    return 0;
+}
