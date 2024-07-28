@@ -1,0 +1,28 @@
+#include <iostream>
+#include <algorithm> // For transform
+#include <cctype>    // For tolower
+using namespace std;
+
+class Solution {
+public:
+    string toLowerCase(string s) {
+        transform(s.begin(), s.end(), s.begin(), ::tolower);
+        return s;
+    }
+};
+
+int main() {
+    Solution sol;
+    string s1 = "Hello World";
+    cout << "Lowercase of \"" << s1 << "\": " << sol.toLowerCase(s1) << endl; // Output: "hello world"
+    string s2 = "C++ Programming";
+    cout << "Lowercase of \"" << s2 << "\": " << sol.toLowerCase(s2) << endl; // Output: "c++ programming"
+    string s3 = "OpenAI GPT-3";
+    cout << "Lowercase of \"" << s3 << "\": " << sol.toLowerCase(s3) << endl; // Output: "openai gpt-3"
+    string s4 = "123456";
+    cout << "Lowercase of \"" << s4 << "\": " << sol.toLowerCase(s4) << endl; // Output: "123456" (no change)
+    string s5 = "";
+    cout << "Lowercase of \"" << s5 << "\": " << sol.toLowerCase(s5) << endl; // Output: "" (empty string)
+
+    return 0;
+}
