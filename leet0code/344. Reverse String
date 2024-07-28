@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int i = 0;
+        int j = s.size() - 1;
+        while (i < j) {
+            swap(s[i], s[j]);
+            i++;
+            j--;
+        }
+    }
+};
+
+// Utility function to print the vector of characters
+void printVector(const vector<char>& vec) {
+    for (char c : vec) {
+        cout << c << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    Solution sol;
+
+    // Test case 1
+    vector<char> s1 = {'h', 'e', 'l', 'l', 'o'};
+    sol.reverseString(s1);
+    cout << "Reversed string for s1: ";
+    printVector(s1);
+
+    // Test case 2
+    vector<char> s2 = {'H', 'a', 'n', 'n', 'a', 'h'};
+    sol.reverseString(s2);
+    cout << "Reversed string for s2: ";
+    printVector(s2);
+
+    return 0;
+}
