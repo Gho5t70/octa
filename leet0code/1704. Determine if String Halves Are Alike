@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    bool isVowel(char ch) {
+        return ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' ||
+               ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+
+    bool halvesAreAlike(string s) {
+        int n = s.size();
+        string firstHalf = s.substr(0, n / 2);
+        string secondHalf = s.substr(n / 2);
+        int fh = 0;
+        int sh = 0;
+        for (char ch : firstHalf) if (isVowel(ch)) fh++;
+        for (char ch : secondHalf) if (isVowel(ch)) sh++;
+        return fh == sh;
+    }
+};
+
+int main() {
+    Solution sol;
+    string s1 = "book";
+    cout << "Halves are alike in \"" << s1 << "\": " << (sol.halvesAreAlike(s1) ? "true" : "false") << endl; // Output: true
+    string s2 = "textbook";
+    cout << "Halves are alike in \"" << s2 << "\": " << (sol.halvesAreAlike(s2) ? "true" : "false") << endl; // Output: false
+    string s3 = "abcde";
+    cout << "Halves are alike in \"" << s3 << "\": " << (sol.halvesAreAlike(s3) ? "true" : "false") << endl; // Output: false
+    string s4 = "aabb";
+    cout << "Halves are alike in \"" << s4 << "\": " << (sol.halvesAreAlike(s4) ? "true" : "false") << endl; // Output: true
+    string s5 = "aaaaaa";
+    cout << "Halves are alike in \"" << s5 << "\": " << (sol.halvesAreAlike(s5) ? "true" : "false") << endl; // Output: true
+
+    return 0;
+}
