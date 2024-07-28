@@ -1,0 +1,42 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int s = 0;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (nums[i] != val) {
+                nums[s] = nums[i];
+                s++;
+            }
+        }
+        return s;
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<int> nums1 = {3, 2, 2, 3};
+    int val1 = 3;
+    int length1 = sol.removeElement(nums1, val1);
+    cout << "New length: " << length1 << endl;
+    cout << "Modified array: ";
+    for (int i = 0; i < length1; ++i) {
+        cout << nums1[i] << " ";
+    }
+    cout << endl;
+
+    vector<int> nums2 = {0, 1, 2, 2, 3, 0, 4, 2};
+    int val2 = 2;
+    int length2 = sol.removeElement(nums2, val2);
+    cout << "New length: " << length2 << endl;
+    cout << "Modified array: ";
+    for (int i = 0; i < length2; ++i) {
+        cout << nums2[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
