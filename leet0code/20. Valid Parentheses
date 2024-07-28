@@ -1,0 +1,39 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> parenthesis;
+        for (char c : s) {
+            if (c == '(' || c == '[' || c == '{') {
+                parenthesis.push(c);
+            } else if (!parenthesis.empty() &&
+                       ((c == ')' && parenthesis.top() == '(') ||
+                        (c == ']' && parenthesis.top() == '[') ||
+                        (c == '}' && parenthesis.top() == '{'))) {
+                parenthesis.pop();
+            } else {
+                return false;
+            }
+        }
+        return parenthesis.empty();
+    }
+};
+
+int main() {
+    Solution sol;
+    string s1 = "()[]{}";
+    string s2 = "(]";
+    string s3 = "([)]";
+    string s4 = "{[]}";
+
+    cout << (sol.isValid(s1) ? "Valid" : "Invalid") << endl; // Output: Valid
+    cout << (sol.isValid(s2) ? "Valid" : "Invalid") << endl; // Output: Invalid
+    cout << (sol.isValid(s3) ? "Valid" : "Invalid") << endl; // Output: Invalid
+    cout << (sol.isValid(s4) ? "Valid" : "Invalid") << endl; // Output: Valid
+
+    return 0;
+}
