@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+// Definition for a binary tree node.
+class TreeNode {
+public:
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if (!p && !q) // Both nodes are null
+            return true;
+        if (!p || !q) // One of the nodes is null
+            return false;
+        if (p->val != q->val) // Node values differ
+            return false;
+        // Recursively check left and right subtrees
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
+
+// Helper function to create a tree from an array (for testing purposes)
+TreeNode* createTree(const vector<int>& values, int index = 0) {
+    if (index >= values.size() || values[index] == -1) return nullptr;
+    TreeNode* root = new TreeNode(values[index]);
+    root->left = createTree(values, 2 * index + 1);
+    root->right = createTree(values, 2 * index + 2);
+    return root;
+}
+
+// Helper function to delete the tree and free memory
+void deleteTree(TreeNode* root) {
+    if (root == nullptr) return;
+    deleteTree(root->left);
+    deleteTree(root->right);
+    delete root;
+}
+
+int main() {
+    Solution sol;
+
+    // Test case 1
+    vector<int> tree1 = {1, 2, 3};
+    vector<int> tree2 = {1, 2, 3};
+    TreeNode* p1 = createTree(tree1);
+    TreeNode* q1 = createTree(tree2);
+    cout << "Trees are " << (sol.isSameTree(p1, q1) ? "same" : "different") << endl;
+
+    // Test case 2
+    vector<int> tree3 = {1, 2};
+    vector<int> tree4 = {1, -1, 2};
+    TreeNode* p2 = createTree(tree3);
+    TreeNode* q2 = createTree(tree4);
+    cout << "Trees are " << (sol.isSameTree(p2, q2) ? "same" : "different") << endl;
+
+    // Clean up memory
+    deleteTree(p1);
+    deleteTree(q1);
+    deleteTree(p2);
+    deleteTree(q2);
+
+    return 0;
+}
