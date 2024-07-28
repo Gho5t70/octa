@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int n = digits.size();
+        for (int i = n - 1; i >= 0; --i) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        vector<int> result(n + 1, 0);
+        result[0] = 1;
+        return result;
+    }
+};
+
+int main() {
+    Solution sol;
+
+    vector<int> digits1 = {1, 2, 3};
+    vector<int> digits2 = {4, 3, 2, 1};
+    vector<int> digits3 = {9, 9, 9};
+
+    vector<int> result1 = sol.plusOne(digits1);
+    vector<int> result2 = sol.plusOne(digits2);
+    vector<int> result3 = sol.plusOne(digits3);
+
+    cout << "Result 1: ";
+    for (int num : result1) cout << num << " ";
+    cout << endl;
+
+    cout << "Result 2: ";
+    for (int num : result2) cout << num << " ";
+    cout << endl;
+
+    cout << "Result 3: ";
+    for (int num : result3) cout << num << " ";
+    cout << endl;
+
+    return 0;
+}
